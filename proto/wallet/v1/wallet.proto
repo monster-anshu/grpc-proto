@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 package wallet.v1;
+
 option go_package = "wallet.v1";
 
 service WalletService {
@@ -8,6 +9,7 @@ service WalletService {
   rpc Transaction(TransactionRequest) returns (TransactionResponse);
   rpc Balance(BalanceRequest) returns (BalanceResponse);
   rpc WalletInfo(WalletInfoRequest) returns (WalletInfoResponse);
+  rpc Transfer(TransferRequest) returns (TransferResponse);
 }
 
 message CreateAddressRequest {}
@@ -49,4 +51,15 @@ message Transaction {
   string to_address = 1;
   int32 points = 2;
   string metadata = 3;
+}
+
+message TransferRequest {
+  string from = 1;
+  string to = 2;
+  int64 amount = 3;
+}
+
+message TransferResponse {
+  bool success = 1;
+  string transaction_id = 2;
 }
