@@ -1,11 +1,13 @@
 syntax = "proto3";
 
 package user.v1;
+
 option go_package = "wallet.v1";
 
 service UserService {
   rpc CreateUser(CreateUserRequest) returns (CreateUserResponse);
   rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse);
+  rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse);
 }
 
 message CreateUserRequest {
@@ -28,4 +30,12 @@ message UpdateUserRequest {
 message UpdateUserResponse {
   string username = 1;
   string email = 2;
+}
+
+message DeleteUserRequest {
+  string username = 1;
+}
+
+message DeleteUserResponse {
+  bool success = 1;
 }
